@@ -9,7 +9,7 @@ from sklearn.compose import ColumnTransformer
 import joblib
 
 # Load data
-url = "https://github.com/DwaipayanDutta/Titanic_App/blob/main/Data/titanic.csv"
+url = "https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv"
 df = pd.read_csv(url)
 
 def preprocess_data(df):
@@ -43,7 +43,7 @@ model = Pipeline(steps=[
 ])
 model.fit(X_train, y_train)
 
-joblib.dump(model, 'titanic_model.pkl
+joblib.dump(model, 'titanic_model.pkl')
 print(f"Train Accuracy: {model.score(X_train, y_train):.2f}")
 print(f"Test Accuracy: {model.score(X_test, y_test):.2f}")
 
