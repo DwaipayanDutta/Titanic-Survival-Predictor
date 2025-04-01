@@ -9,7 +9,7 @@ from sklearn.compose import ColumnTransformer
 import joblib
 
 # Load data
-url = "Data/titanic.csv"
+url = "https://github.com/DwaipayanDutta/Titanic_App/blob/main/Data/titanic.csv"
 df = pd.read_csv(url)
 
 def preprocess_data(df):
