@@ -5,9 +5,8 @@ import pandas as pd
 import numpy as np
 
 app = FastAPI(title="Titanic Survival Predictor")
-
 # Load trained model and original dataset
-model = joblib.load("https://github.com/DwaipayanDutta/Titanic_App/raw/main/Model/titanic_model.pkl")
+model = joblib.load("D:/Projects/titanic_model.pkl")
 LOOKUP_DF = pd.read_csv("https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv")
 
 LOOKUP_DF = LOOKUP_DF[['PassengerId', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']]
@@ -29,12 +28,10 @@ async def predict_survival(passenger: PassengerRequest):
         )
     
     try:
-        features = passenger_data.drop('PassengerId', axis=1)
-        
+        features = passenger_data.drop('PassengerId', axis=1)        
         # Predict survival status using the model
         prediction = model.predict(features)
         survival_status = "Survived" if prediction[0] == 1 else "Not Survived"
-        
         # Return prediction with relevant details
         return {
             "passenger_id": passenger.PassengerId,
