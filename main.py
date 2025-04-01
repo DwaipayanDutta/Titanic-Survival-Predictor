@@ -15,7 +15,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Load model and data from raw GitHub URLs
+# Load model 
 MODEL_URL = "https://github.com/DwaipayanDutta/Titanic_App/raw/main/Model/titanic_model.pkl"
 DATA_URL = "https://github.com/DwaipayanDutta/Titanic_App/raw/main/Data/titanic.csv"
 
@@ -41,15 +41,10 @@ preprocessor = ColumnTransformer(
 preprocessor.fit(LOOKUP_DF.drop('PassengerId', axis=1))
 
 class PassengerRequest(BaseModel):
-    PassengerId: int  # Original data uses integer PassengerId
+    PassengerId: int 
 
 @app.post("/predict", summary="Predict survival status")
 async def predict_survival(passenger: PassengerRequest):
-    """
-    Predict survival status for a Titanic passenger using their ID.
-    
-    - **PassengerId**: Unique identifier of the passenger (integer)
-    """
     try:
         passenger_id = str(passenger.PassengerId)
         passenger_data = LOOKUP_DF[LOOKUP_DF['PassengerId'].astype(str) == passenger_id]
