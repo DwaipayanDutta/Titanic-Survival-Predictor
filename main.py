@@ -7,7 +7,7 @@ import numpy as np
 app = FastAPI(title="Titanic Survival Predictor")
 
 # Load trained model and original dataset
-model = joblib.load("https://github.com/DwaipayanDutta/Titanic_App/blob/main/Model/titanic_model.pkl")
+model = joblib.load("Model/titanic_model.pkl")
 LOOKUP_DF = pd.read_csv("https://github.com/DwaipayanDutta/Titanic_App/blob/main/Data/titanic.csv")
 
 LOOKUP_DF = LOOKUP_DF[['PassengerId', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']]
