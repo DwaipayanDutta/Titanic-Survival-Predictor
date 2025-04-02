@@ -11,7 +11,9 @@ app = FastAPI(title="Titanic Survival Predictor")
 # Load trained model and original dataset
 
 
-model = pickle.load(urllib.request.urlopen("https://github.com/DwaipayanDutta/Titanic_App/blob/main/Model/titanic_model.pkl"))
+model = pickle.load(urllib.request.urlopen("https://github.com/DwaipayanDutta/Titanic_App/raw/refs/heads/main/Model/titanic_model.pkl"))
+
+
 
 LOOKUP_DF = pd.read_csv("https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv")
 
