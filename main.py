@@ -8,10 +8,12 @@ from urllib.request import urlopen
 import pickle
 
 app = FastAPI(title="Titanic Survival Predictor")
+
 # Load trained model and original dataset
+#model_response = requests.get(MODEL_URL)
+#model = joblib.load(BytesIO(model_response.content))
 
-
-model = pickle.load(urllib.request.urlopen("https://github.com/DwaipayanDutta/Titanic_App/raw/refs/heads/main/Model/titanic_model.pkl"))
+model = joblib.load("model/titanic_model.pkl")
 
 
 
