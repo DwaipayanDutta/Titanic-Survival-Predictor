@@ -42,7 +42,7 @@ This endpoint accepts a `POST` request with a JSON body containing a `PassengerI
 }
 
 #### Response Example
-
+``
 {
   "passenger_id": "1",
   "survival_status": "Survived",
@@ -56,7 +56,7 @@ This endpoint accepts a `POST` request with a JSON body containing a `PassengerI
     "Embarked": "C"
   }
 }
-
+``
 #### Error Response Example
 
 If the `PassengerId` is not found in the dataset:
