@@ -43,7 +43,7 @@ model = Pipeline(steps=[
 ])
 model.fit(X_train, y_train)
 
-joblib.dump(model, 'titanic_model.pkl')
+joblib.dump(model, 'model/titanic_model.pkl')
 print(f"Train Accuracy: {model.score(X_train, y_train):.2f}")
 print(f"Test Accuracy: {model.score(X_test, y_test):.2f}")
 
