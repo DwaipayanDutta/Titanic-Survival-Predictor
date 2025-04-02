@@ -68,7 +68,7 @@ If the `PassengerId` is not found in the dataset:
 If there is an error during the prediction:
 
 {
-  "detail": "Prediction error: [Error Message]"
+  "detail": "Prediction error: [Not Found]"
 }
 
 ## Run the Application
