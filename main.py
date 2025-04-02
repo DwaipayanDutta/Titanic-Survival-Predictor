@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import urllib.request
 from urllib.request import urlopen
-
+import pickle
 
 app = FastAPI(title="Titanic Survival Predictor")
 # Load trained model and original dataset
