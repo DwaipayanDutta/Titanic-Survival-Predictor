@@ -3,10 +3,13 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 import numpy as np
+from urllib.request import urlopen
 
 app = FastAPI(title="Titanic Survival Predictor")
 # Load trained model and original dataset
-model = joblib.load("D:/Projects/titanic_model.pkl")
+
+
+model = joblib.load(urlopen("https://github.com/DwaipayanDutta/Titanic_App/blob/main/Model/titanic_model.pkl")
 LOOKUP_DF = pd.read_csv("https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv")
 
 LOOKUP_DF = LOOKUP_DF[['PassengerId', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']]
