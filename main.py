@@ -4,13 +4,10 @@ import joblib
 import pandas as pd
 import numpy as np
 
-
 app = FastAPI(title="Titanic Survival Predictor")
-
 # Load trained model and original dataset
 # model_response = requests.get(MODEL_URL)
 # model = joblib.load(BytesIO(model_response.content))
-
 model = joblib.load("model/titanic_model.pkl")
 LOOKUP_DF = pd.read_csv(
     "https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv"
