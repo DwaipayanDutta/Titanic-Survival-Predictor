@@ -1,4 +1,4 @@
-# Titanic Survival Predictor (Demo)
+# Titanic Survival Predictor (Swagger Demo)
 
 This FastAPI app provides a service to predict whether a passenger survived the Titanic disaster based on certain features like age, gender, class, etc. It utilizes a pre-trained machine learning model to make these predictions.
 
