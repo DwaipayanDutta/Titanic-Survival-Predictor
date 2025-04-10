@@ -1,48 +1,60 @@
-# Titanic Survival Predictor (Swagger Demo)
+🚢 Titanic Survival Predictor (FastAPI + Swagger Demo)
+This project is a FastAPI application that predicts whether a passenger survived the Titanic disaster. It uses a pre-trained machine learning model and provides a simple API interface documented via Swagger.
 
-This FastAPI app provides a service to predict whether a passenger survived the Titanic disaster based on certain features like age, gender, class, etc. It utilizes a pre-trained machine learning model to make these predictions.
+📦 Requirements
+Before running the app, install the required Python packages:
 
-## Requirements
+bash
+Copy
+Edit
+pip install fastapi uvicorn pandas scikit-learn joblib
+Dependencies
+FastAPI – For building the REST API.
 
-Before running this application, you need to install the following dependencies:
+Uvicorn – ASGI server to run the FastAPI app.
 
-- **FastAPI**: The web framework to build the API.
-- **Uvicorn**: ASGI server for running FastAPI apps.
-- **Pandas**: Data manipulation and analysis library.
-- **Scikit-learn**: For loading and using the pre-trained machine learning model.
-- **Joblib**: To handle serialization and deserialization of the model.
-- **Pickle**: Python’s built-in object serialization tool (used internally for model loading).
+Pandas – For data manipulation and lookup.
 
-You can install the required dependencies using pip:
+Scikit-learn – For loading and running the ML model.
 
-`pip install fastapi uvicorn pandas scikit-learn joblib`
+Joblib – For model serialization/deserialization.
 
-## Project Structure
+Pickle – (Used internally) to handle object serialization.
 
-- **app.py**: The FastAPI application containing the prediction logic.
-- **model/titanic_model.pkl**: The pre-trained model file.
-- **Data/titanic.csv**: The dataset used for prediction lookups.
+📁 Project Structure
+bash
+Copy
+Edit
+├── app.py                     # Main FastAPI app
+├── model/
+│   └── titanic_model.pkl      # Pre-trained ML model
+└── Data/
+    └── titanic.csv            # Titanic passenger dataset
+⚙️ How It Works
+Model Loading
+The app loads a pre-trained model from model/titanic_model.pkl using joblib.
 
-## How It Works
+Data Lookup
+Passenger data is fetched from a dataset hosted on GitHub. The dataset contains key features like age, sex, class, fare, etc.
 
-1. **Model Loading**: The model is loaded from a `.pkl` file using `joblib`.
-2. **Dataset**: The dataset is fetched from a remote CSV file hosted on GitHub. This dataset is used to lookup passenger features for making predictions.
-3. **Prediction**: The API endpoint accepts a `POST` request with a passenger's ID, retrieves the corresponding passenger data, and uses the model to predict if the passenger survived or not.
+Prediction
+A POST request to the /predict endpoint with a PassengerId retrieves the passenger's data and predicts whether they survived.
 
-## API Endpoints
+🔌 API Endpoint
+POST /predict
+Predicts survival based on the given PassengerId.
 
-### POST `/predict`
-
-This endpoint accepts a `POST` request with a JSON body containing a `PassengerId`, and returns whether the passenger survived the Titanic disaster or not, along with relevant features.
-
-#### Request Body Example
-
+📥 Request Example
+json
+Copy
+Edit
 {
   "PassengerId": "1"
 }
-
-#### Response Example
-``
+📤 Successful Response Example
+json
+Copy
+Edit
 {
   "passenger_id": "1",
   "survival_status": "Survived",
@@ -56,61 +68,72 @@ This endpoint accepts a `POST` request with a JSON body containing a `PassengerI
     "Embarked": "C"
   }
 }
-``
-#### Error Response Example
+❌ Error Responses
+Passenger not found:
 
-If the `PassengerId` is not found in the dataset:
-
+json
+Copy
+Edit
 {
   "detail": "Passenger ID 9999 not found in records"
 }
+Prediction error:
 
-If there is an error during the prediction:
-
+json
+Copy
+Edit
 {
   "detail": "Prediction error: [Not Found]"
 }
+▶️ Running the Application
+Start the FastAPI server locally using uvicorn:
 
-## Run the Application
+bash
+Copy
+Edit
+uvicorn app:app --reload
+The app will be available at: http://127.0.0.1:8001
 
-To run the application locally, use `uvicorn`:
+🧪 Example cURL Request
+bash
+Copy
+Edit
+curl -X 'POST' 'http://127.0.0.1:8001/predict' \
+-H 'Content-Type: application/json' \
+-d '{ "PassengerId": "1" }'
+⚠️ Notes
+The model was trained on historical Titanic passenger data including fields like age, class, sex, fare, and embarkation point.
 
-`uvicorn app:app --reload`
+The dataset is pulled from a remote CSV file:
+https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv
 
-This will start the FastAPI server on `http://127.0.0.1:8001`, and you can send requests to it.
+Ensure this link is accessible when running the app.
 
-## Example cURL Command
+🚀 Optional: Airflow Integration
+To orchestrate this prediction workflow using Apache Airflow:
 
-You can use `curl` to test the prediction endpoint:
+1. Install Airflow
+bash
+Copy
+Edit
+pip install apache-airflow
+airflow db init
+airflow users create \
+  --username admin --firstname Admin --lastname User \
+  --role Admin --email admin@example.com
+airflow scheduler
+airflow webserver --port 8080
+2. Prepare Resources
+Confirm the model (titanic_model.pkl) is in the correct model/ directory.
 
-`curl -X 'POST' 'http://127.0.0.1:8001/predict' -H 'Content-Type: application/json' -d '{ "PassengerId": "1" }'`
+Ensure the dataset URL is available.
 
-## Notes
+3. Monitor Workflow
+Use the Airflow UI (http://localhost:8080) to:
 
-- The model used here is a pre-trained Titanic survival prediction model (`titanic_model.pkl`), which was trained on passenger data like age, sex, class, and other features.
-- Ensure that the dataset URL used (`https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv`) is accessible when running the app.
+Monitor job runs
 
-## Other Improvements
-We can also adapt the Titanic Survival Predictor project to Apache Airflow for programmatically authoring, scheduling, and monitoring workflows
+Trigger predictions manually or on a schedule
 
-#Steps to Deploy This Workflow
-
-	1. Install Apache Airflow:
-		
-		pip install apache-airflow
-		airflow db init
-		airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com
-		airflow scheduler
-		airflow webserver --port 8080
-
-
-	2.Prepare Resources:
-	Ensure the Titanic survival model (titanic_model.pkl) is stored at Model path.
-	Verify that the dataset URL is accessible.
-
-	3.Monitor Workflow:
-	Use the Airflow UI to monitor and trigger DAG runs manually or automatically based on the schedule.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
