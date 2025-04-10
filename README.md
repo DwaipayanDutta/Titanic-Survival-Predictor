@@ -1,10 +1,10 @@
 
-# Titanic Survival Predictor (FastAPI + Swagger Demo)
+🚢# Titanic Survival Predictor (FastAPI + Swagger Demo)
 =====================================================
 
 This project is a FastAPI application that predicts whether a passenger survived the Titanic disaster. It uses a pre-trained machine learning model and provides a simple API interface documented via Swagger.
 
-## Requirements
+📦## Requirements
 ---------------
 Before running the app, install the required Python packages:
 ```
@@ -18,7 +18,7 @@ pip install fastapi uvicorn pandas scikit-learn joblib
 - **Joblib**: For model serialization/deserialization.
 - **Pickle**: (Used internally) to handle object serialization.
 
-## Project Structure
+📁## Project Structure
 -------------------
 `````
 Model
@@ -74,7 +74,6 @@ Predicts survival based on the given `PassengerId`.
 
 ## Error Responses
 ------------------
-
 ### Passenger not found:
 ```
 {
@@ -139,7 +138,6 @@ to:
 - Monitor job runs.
 - Trigger predictions manually or on a schedule.
 
-
-## License
+📄 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
