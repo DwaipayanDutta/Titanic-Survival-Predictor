@@ -96,13 +96,13 @@ We can also adapt the Titanic Survival Predictor project to Apache Airflow for p
 #Steps to Deploy This Workflow
 
 	1. Install Apache Airflow:
-		```
+		
 		pip install apache-airflow
 		airflow db init
 		airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com
 		airflow scheduler
 		airflow webserver --port 8080
-		```
+
 
 	2.Prepare Resources:
 	Ensure the Titanic survival model (titanic_model.pkl) is stored at Model path.
