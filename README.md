@@ -90,6 +90,27 @@ You can use `curl` to test the prediction endpoint:
 - The model used here is a pre-trained Titanic survival prediction model (`titanic_model.pkl`), which was trained on passenger data like age, sex, class, and other features.
 - Ensure that the dataset URL used (`https://raw.githubusercontent.com/DwaipayanDutta/Titanic_App/refs/heads/main/Data/titanic.csv`) is accessible when running the app.
 
+## Other Improvements
+We can also adapt the Titanic Survival Predictor project to Apache Airflow for programmatically authoring, scheduling, and monitoring workflows
+
+#Steps to Deploy This Workflow
+	1. Install Apache Airflow:
+		```
+		pip install apache-airflow
+		airflow db init
+		airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com
+		airflow scheduler
+		airflow webserver --port 8080
+		```
+
+
+	2.Prepare Resources:
+	Ensure the Titanic survival model (titanic_model.pkl) is stored at Model path.
+	Verify that the dataset URL is accessible.
+
+	3.Monitor Workflow:
+	Use the Airflow UI to monitor and trigger DAG runs manually or automatically based on the schedule.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
