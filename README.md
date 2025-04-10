@@ -94,6 +94,7 @@ You can use `curl` to test the prediction endpoint:
 We can also adapt the Titanic Survival Predictor project to Apache Airflow for programmatically authoring, scheduling, and monitoring workflows
 
 #Steps to Deploy This Workflow
+
 	1. Install Apache Airflow:
 		```
 		pip install apache-airflow
@@ -102,7 +103,6 @@ We can also adapt the Titanic Survival Predictor project to Apache Airflow for p
 		airflow scheduler
 		airflow webserver --port 8080
 		```
-
 
 	2.Prepare Resources:
 	Ensure the Titanic survival model (titanic_model.pkl) is stored at Model path.
